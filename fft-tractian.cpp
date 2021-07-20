@@ -173,12 +173,16 @@ int main(int argc, char *argv[])
     double time_acc = 0.0;
 
     // *TODO: Pegar as infomacoes do arquivo para Tempo de duração (time_total), Qtde de amostras (N)
-    time_total = 2.715; // 2715 milisegundos
+    std::vector<std::string> file_info;
+    boost::split(file_info, ArquivoCSV, boost::is_any_of("-"));
+
+//    time_total = 2.715; // 2715 milisegundos
+    time_total = std::stod(file_info[1]) / 1000.0; // Converte milisegundos em segundos 
     N = (double)(dataList.size());
     F = N / time_total; // Frquencia do sampling (amostragem)
     P = 1 / F; // Periodo da amostragem
 
-    std::time_t epoch = 1602245833; // *TODO: pegar essa informação do arquivo
+    std::time_t epoch = std::stoi(file_info[0]); // *TODO: pegar essa informação do arquivo
     // Imprime informações da amostragem
     std::cout << "\n********************************************************************************************\n";
     std::cout << boost::format{"Data da coleta: %2% - %1%"} % std::asctime(std::localtime(&epoch)) % epoch << std::endl;
