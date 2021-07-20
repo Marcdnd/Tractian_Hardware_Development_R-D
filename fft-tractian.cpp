@@ -172,7 +172,7 @@ int main(int argc, char *argv[])
     long int contador=1;
     double time_acc = 0.0;
 
-    // *TODO: Pegar as infomacoes do arquivo para Tempo de duração (time_total), Qtde de amostras (N)
+    // Pegar as infomacoes do arquivo para Tempo de duração (time_total), Qtde de amostras (N)
     std::vector<std::string> file_info;
     boost::split(file_info, ArquivoCSV, boost::is_any_of("-"));
 
@@ -182,7 +182,7 @@ int main(int argc, char *argv[])
     F = N / time_total; // Frquencia do sampling (amostragem)
     P = 1 / F; // Periodo da amostragem
 
-    std::time_t epoch = std::stoi(file_info[0]); // *TODO: pegar essa informação do arquivo
+    std::time_t epoch = std::stoi(file_info[0]); // pegar essa informação do arquivo
     // Imprime informações da amostragem
     std::cout << "\n********************************************************************************************\n";
     std::cout << boost::format{"Data da coleta: %2% - %1%"} % std::asctime(std::localtime(&epoch)) % epoch << std::endl;
@@ -191,19 +191,25 @@ int main(int argc, char *argv[])
 
     // Loop para carregar e converter os valores do CSV nos vetores respectivos
     const int NUMF=3; // Numero de campos do registro
+    long double X,Y,Z;
 
     for(std::vector<std::string> vec : dataList) // for vec in datalist: ...
     {
 	if (vec.size()==NUMF) {
 //            boost::replace_all(vec[0],",","."); // Troca virvula por ponto para separaçõa dos decimais
-       	    x.push_back(std::stold(vec[0]));
-       	    y.push_back(std::stold(vec[1]));
-       	    z.push_back(std::stold(vec[2]));
+            X = std::stold(vec[0]);
+       	    x.push_back(X);
+
+            Y = std::stold(vec[1]);
+       	    y.push_back(Y);
+
+            Z = std::stold(vec[0]);
+       	    z.push_back(Z);
 
 	    time_acc += P;
 	    time.push_back(time_acc);
 
-            total.push_back( std::stold(vec[0]) + std::stold(vec[1]) + std::stold(vec[2]) );
+            total.push_back(sqrt(X*X + Y*Y + Z*Z));
 
 	} else {
             if (vec.size()>NUMF) {
