@@ -10,6 +10,6 @@ Dependencias:
         libboost >= 1.50.0
 
 Compilar:
-        [Linux]: sh ./compilar.sh
+        [Linux]: sh ./compile.sh
 
 (2021) Marc Dnd
