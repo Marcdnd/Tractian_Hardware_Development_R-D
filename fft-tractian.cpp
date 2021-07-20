@@ -198,13 +198,13 @@ int main(int argc, char *argv[])
 	if (vec.size()==NUMF) {
 //            boost::replace_all(vec[0],",","."); // Troca virvula por ponto para separaçõa dos decimais
             X = std::stold(vec[0]);
-       	    x.push_back(X);
+	    x.push_back(X);
 
             Y = std::stold(vec[1]);
-       	    y.push_back(Y);
+	    y.push_back(Y);
 
             Z = std::stold(vec[0]);
-       	    z.push_back(Z);
+	    z.push_back(Z);
 
 	    time_acc += P;
 	    time.push_back(time_acc);
@@ -259,7 +259,7 @@ int main(int argc, char *argv[])
 
     }
 
-    std::cout << "Computando as FFT dos vetores X.\n";
+    std::cout << "Computando as FFT dos vetores X/Y/Z/TOTAL.\n";
     #define INVERT false
     fft2(cx,INVERT);
     fft2(cy,INVERT);
