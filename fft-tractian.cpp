@@ -203,7 +203,7 @@ int main(int argc, char *argv[])
             Y = std::stold(vec[1]);
 	    y.push_back(Y);
 
-            Z = std::stold(vec[0]);
+            Z = std::stold(vec[2]);
 	    z.push_back(Z);
 
 	    time_acc += P;
@@ -307,7 +307,7 @@ int main(int argc, char *argv[])
 
     std::ofstream output;
     output.open("output.txt", std::ios::out);
-//    output << "x,y,z,freq" << std::endl; // Cabeçalho do arquivo output.txt, comentar esta linha caso queira o output.txt sem cabeçalho
+    output << "x,y,z,freq" << std::endl; // Cabeçalho do arquivo output.txt, comentar esta linha caso queira o output.txt sem cabeçalho
     for(long int i=0; i<x.size(); i++) {
 	output << boost::format{"%1%,%2%,%3%,%4%"} % x[i] % y[i] % z[i] % fabs(ct[i].real()) << std::endl;
     }
